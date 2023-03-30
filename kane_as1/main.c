@@ -1,5 +1,6 @@
 #include "matrix.h"
 
+//main
 int main()
 {
 	int *arr_A = NULL;

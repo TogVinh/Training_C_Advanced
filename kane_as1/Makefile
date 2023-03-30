@@ -1,12 +1,18 @@
-As1_kane: main.o matrix.o
-	gcc -o As1_kane main.o matrix.o
-matrix.o: matrix.c matrix.h
-	gcc -c matrix.c
+CFLAGS = -I. -I./inc
 
-main.o: main.c matrix.h
-	gcc -c main.c
-	
+TARGET = AS1_run
+OBJECTS = main.o matrix.o
+
+
+$(TARGET): $(OBJECTS)
+	gcc -o main_run $(OBJECTS)
+
+main.o: main.c 
+	gcc -c main.c -I./inc
+
+matrix.o: matrix.c
+	gcc -c matrix.c -I./inc
+	 
 clean:
-	rm main.o matrix.o
-
+	rm -r *.o
 
