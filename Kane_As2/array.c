@@ -1,6 +1,5 @@
 #include "array.h"
 
-
 /*Input the elements of array*/
 /*FUNCTION=================================================================
 *  Funtion Name : Input
@@ -36,10 +35,11 @@ void Output_Array(int a[], int n)
 *  Funtion Name : Cal_Average
 *  Description  : Calculator the average of array
 ==========================================================================*/
-void Cal_Average(int a[], int n, float *avrg)
+float Cal_Average(int a[], int n)
 {
 	int count;
 	int sum = 0;
+	float avrg;
 	float avr = 0; /* Calculator the average of Array */
 
 	int i;
@@ -47,28 +47,29 @@ void Cal_Average(int a[], int n, float *avrg)
 	{
 		sum += a[count];
 	}
-	*avrg = sum / count;
+	avrg = sum / count;
+	return avrg;
 }
 
 /* find the the numbers of element less than average */
 /*FUNCTION=================================================================
 *  Funtion Name : Less_Aveg
-*  Description  : count the number of elemrnt lower than 
+*  Description  : count the number of elemrnt lower than
 *                 the average of array
 ==========================================================================*/
-void Less_Aveg(int a[], int n, float *avrg, float *L)
+int Less_Aveg(int a[], int n)
 {
 	int i;
 	int count = 0;
 	for (i = 0; i < n; i++)
 	{
-		if (a[i] < *avrg)
+		if (a[i] < Cal_Average(a,n) )
 		{
 			count++;
 		}
 	}
-
-	*L = count;
+	
+	return count;
 }
 
 /*Search the value in the Array*/
@@ -87,12 +88,11 @@ void Search(int a[], int n, int num)
 			printf("a[%d] = %d  \n", i, a[i]);
 			count++;
 		}
-	}/* Calculator the average of Array */
+	} /* Calculator the average of Array */
 
-	if (count == 0)/* Calculator the average of Array */
+	if (count == 0) /* Calculator the average of Array */
 		printf("Don't have this element in Array \n");
 }
-
 
 /*FUNCTION=================================================================
 *  Funtion Name : odd_Element
@@ -100,20 +100,19 @@ void Search(int a[], int n, int num)
 ==========================================================================*/
 void odd_Element(int a[], int n)
 {
-	int i , j; 
+	int i, j;
 	int temp;
-	for (i =0; i < n; i++)
+	for (i = 1; i < n; i++)
 	{
-		for (j = i+1; j < n; j++)
-		{
-			if ((a[i] % 2 == 0) && (a[j] % 2 != 0))
-			{
+		temp = a[i];
+		j = i - 1;
 
-				temp = a[j];
-				a[j] = a[i];
-				a[i] = temp;
-			}
+		while ((j >= 0) && (a[j] % 2 == 0) && (temp % 2 != 0))
+		{
+			a[j + 1] = a[j];
+			j = j - 1;
 		}
+		a[j + 1] = temp;
 	}
 
 	Output_Array(a, n);

@@ -22,11 +22,11 @@ int main()
 	printf("\n--------------------------");
 
 	/*Average of all element in array*/
-	Cal_Average(arr, N, &avrg);
+	avrg = Cal_Average(arr, N);
 	printf("\nThe Average of Array is : %.2f", avrg);
 
 	/*the numbers of element less than average*/
-	Less_Aveg(arr, N, &avrg, &L);
+	L = Less_Aveg(arr, N);
 	printf("\nThe numbers of all element less than average  : %.2f\n", L);
 
 	/*find value in Array*/
