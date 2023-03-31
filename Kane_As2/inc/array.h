@@ -37,8 +37,7 @@ void Output_Array(int a[], int n);
 *
 * @param n[In] <the numbers of elemnt of array>
 *
-* @param *avrg <the pointer to point the avrg variable>
-*return None
+* return <average variable>
 */
 float Cal_Average(int a[], int n);
 
@@ -50,7 +49,7 @@ float Cal_Average(int a[], int n);
 *
 * @param n[In] <the numbers of elemnt of array>
 *
-*return None
+*<the numbers of element less than average>
 */
 int Less_Aveg(int a[], int n);
 
