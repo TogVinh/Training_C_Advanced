@@ -1,4 +1,4 @@
-#include "lib.h"
+#include "array.h"
 
 int main()
 {

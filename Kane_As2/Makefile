@@ -1,7 +1,16 @@
-As2_P1_Kane: main.o lib.o
-	gcc -o As2_P1_Kane main.o lib.o
-lib.o: lib.c lib.h
-	gcc -c lib.c
+CFLAGS = -I. -I./inc
 
-main.o: main.c lib.h
-	gcc -c main.c
+TARGET = as2_p1_run
+OBJECTS = main.o array.o
+
+$(TARGET): $(OBJECTS)
+	gcc -o $(TARGET) $(OBJECTS)
+
+main.o: main.c 
+	gcc -c main.c -I./inc
+
+array.o: array.c
+	gcc -c array.c -I./inc
+	 
+clean:
+	rm -r *.o
