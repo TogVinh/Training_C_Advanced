@@ -1,16 +1,15 @@
 #include "matrix.h"
 
-//main
+
 int main()
 {
-	int *arr_A = NULL;
-	int *arr_B = NULL;
+	int *p_arr_A = NULL; // Matrix A
+	int *p_arr_B = NULL; // Matrix B
 	
-	int row_A , col_A ;
-	int row_B , col_B ;
 	
-	/*loop variable */
-	int i; 
+	int row_A , col_A ; // row and colums of matrix A
+	int row_B , col_B ; // row and colums of matrix B
+	
 	
 	/*Matrix A -- Input row and col*/
 	printf("-----Input the information of Matrix A-----\n");
@@ -20,10 +19,10 @@ int main()
 	scanf("%d",&col_A );
 	
 	/* dyamic allocation for matrix A */
-	arr_A = (int*)malloc( row_A*col_A*sizeof(int) );
+	p_arr_A = (int*)malloc( row_A*col_A*sizeof(int) );
 	
 	
-	Matrix_Input(arr_A , row_A , col_A );
+	matrixInput(p_arr_A , row_A , col_A );
 	
 	/*Matrix B -- Input row and col*/
 	printf("-----Input the information of Matrix B-----\n");
@@ -33,15 +32,15 @@ int main()
 	scanf("%d",&col_B );
 	
 	/* dyamic allocation for matrix B */
-	arr_B = (int*)malloc( row_B*col_B*sizeof(int) );
+	p_arr_B = (int*)malloc( row_B*col_B*sizeof(int) );
 	
-	Matrix_Input(arr_B , row_B , col_B );
+	matrixInput(p_arr_B , row_B , col_B );
 	 
-	show_Output(arr_A , arr_B, row_A, col_A, row_B, col_B);
+	Output(p_arr_A , p_arr_B, row_A, col_A, row_B, col_B);
 	
 	/* Free Matrix A and Matrix B */
-	free( arr_A );
-	free( arr_B );
+	free( p_arr_A );
+	free( p_arr_B );
 	
 	return 0;
 }

@@ -1,20 +1,19 @@
 #include "matrix.h"
 
-
 /*FUNCTION=================================================================
 *  Funtion Name : Matrix_Input
 *  Description  : Input the element of matrix
 ==========================================================================*/
-void Matrix_Input (int *a, int row , int col)
+void matrixInput(int *p_Arr, int row, int col)
 {
-	/*loop variable */
-	int i ,j;
-	for( i = 0; i < row ; i ++ )
+	int row_index, col_index; // loop variable
+
+	for (row_index = 0; row_index < row; row_index++)
 	{
-		for ( j = 0; j < col ; j++ )
+		for (col_index = 0; col_index < col; col_index++)
 		{
-			printf("a[%d][%d] =  ", i, j);
-			scanf("%d", (a + i*row + j) );
+			printf("a[%d][%d] =  ", row_index, col_index);
+			scanf("%d", (p_Arr + row_index * row + col_index));
 		}
 	}
 }
@@ -23,15 +22,15 @@ void Matrix_Input (int *a, int row , int col)
 *  Funtion Name : Matrix_Print
 *  Description  : Print the matrix to the terminal
 ==========================================================================*/
-void Matrix_Print ( int *a, int row , int col )
+void matrixPrint(int *p_Arr, int row, int col)
 {
-	/*loop variable */
-	int i , j; 
-	for (i = 0; i < row ; i++)
+	int row_index, col_index; // Loop variable
+
+	for (row_index = 0; row_index < row; row_index++)
 	{
-		for ( j = 0 ; j < col ; j++ )
+		for (col_index = 0; col_index < col; col_index++)
 		{
-			printf("%d   ", *(a + i*row + j) );
+			printf("%d   ", *(p_Arr + row_index * row + col_index));
 		}
 		printf("\n");
 	}
@@ -41,64 +40,48 @@ void Matrix_Print ( int *a, int row , int col )
 *  Funtion Name : Sum
 *  Description  : Calculate the sumation/addition of two matrices
 ==========================================================================*/
-void Sum (int *a, int *b, int row, int col)
+void Sum(int *p_A, int *p_B, int row, int col, int *p_arr_Sum)
 {
-    /*array to contain Sum of maxtries */
-	int *arr_S = NULL;
 
 	/*loop variable */
-	int i , j;
-	
-	arr_S = (int*)malloc( row*col*sizeof(int) );
-	
-    for (i = 0; i < row ; i++)
-    {
-        for ( j = 0; j < col ; j++)
-        {
-            *(arr_S + i*row + j) = *(a + i*row + j) + *(b + i*row + j);
-        }
-    }
-    
-    Matrix_Print ( arr_S,row ,col );
-    
-    free(arr_S);
+	int row_index, col_index; // loop variable
+
+	for (row_index = 0; row_index < row; row_index++)
+	{
+		for (col_index = 0; col_index < col; col_index++)
+		{
+			*(p_arr_Sum + row_index * row + col_index) = *(p_A + row_index * row + col_index) + *(p_B + row_index * row + col_index);
+		}
+	}
 }
 
 /*FUNCTION================================================================
 *  Funtion Name : mul
 *  Description  : Calculate the Multiple of two matrices
 =========================================================================*/
-void Mul (int *a, int *b, int row , int col , int general)
+void Multiply(int *p_A, int *p_B, int row, int col, int general, int *p_arr_Mul)
 {
-	/*array to contain Multiple of maxtries */
-	int *arr_M = NULL;
-	/*loop variable */
-	int i , j, k;
-	
-	
-	arr_M = (int*)malloc( row*col*sizeof(int) );
-	
-	for (i = 0; i < row ; i++)
+
+	int row_index = 0; // loop variable to count row of matrix
+	int col_index = 0; // loop variable to count colums of matrix
+	int index = 0;	   // loop variable to count index of Multiply matrix
+
+	for (row_index = 0; row_index < row; row_index++)
 	{
-		for( j = 0 ; j < col ; j++ )
+		for (col_index = 0; col_index < col; col_index++)
 		{
-			//value of one element in Multi matrix
-			int Matrix_Element = 0 ;
-			
-			for (k =0 ; k < general ; k++)
+			// value of one element in Multi matrix
+			int matrix_element = 0;
+
+			for (index = 0; index < general; index++)
 			{
-				Matrix_Element = Matrix_Element + *(a + i*row + k) * *(b + k*row + j);
+				matrix_element += *(p_A + row_index * row + index) * *(p_B + index * row + col_index);
 			}
-			
+
 			// element in row i col j of arr_M
-			*(arr_M + i*row + j) = Matrix_Element ;
+			*(p_arr_Mul + row_index * row + col_index) = matrix_element;
 		}
 	}
-	
-	
-	Matrix_Print ( arr_M, row , col );
-	
-	free( arr_M );
 }
 
 /*FUNCTION===============================================================
@@ -106,16 +89,14 @@ void Mul (int *a, int *b, int row , int col , int general)
 *  Description  : check the addition condition of two matrices
 *  return true/false
 ========================================================================*/
-bool check_Sum( int row_A, int col_A, int row_B, int col_B )
+bool checkSum(int row_A, int col_A, int row_B, int col_B)
 {
-	if ( (row_A == row_B) && (col_A == col_B) )
+	if ((row_A == row_B) && (col_A == col_B))
 	{
-		printf("\n matrix A and Matrix B can add together \n");
 		return 1;
 	}
 	else
 	{
-		printf("\n matrix A and Matrix B can not add together \n");
 		return 0;
 	}
 }
@@ -125,17 +106,15 @@ bool check_Sum( int row_A, int col_A, int row_B, int col_B )
 *  Description  : check the multiplication condition of Matrix A and B
 *  return true/false
 ========================================================================*/
-bool check_AB (int col_A, int row_B )
+bool checkAmultiB(int col_A, int row_B)
 {
 	if (col_A == row_B)
 	{
-		printf("Matrix A and Matrix B can multi together \n");
 		return 1;
 	}
-	
+
 	else
 	{
-		printf("Matrix A and matriX B can not multi together \n");
 		return 0;
 	}
 }
@@ -145,57 +124,114 @@ bool check_AB (int col_A, int row_B )
 *  Description  : check the multiplication condition of Matrix B and A
 *  return true/false
 ========================================================================*/
-bool check_BA (int row_A, int col_B)
+bool checkBmultiA(int row_A, int col_B)
 {
-	if ( row_A == col_B )
+	if (row_A == col_B)
 	{
-		printf("Matrix B and Matrix A can multi together \n");
 		return 1;
 	}
 	else
 	{
-		printf("Matrix B and Matrix A can not multi together \n ");
 		return 0;
 	}
 }
-
 
 /*======================================================================
 *  Funtion Name : show_Output
 *  Description  : check and show output of program
 ========================================================================*/
-void show_Output(int *arr_A , int *arr_B, int row_A, int col_A, int row_B, int col_B)
+void Output(int *p_arr_A, int *p_arr_B, int row_A, int col_A, int row_B, int col_B)
 {
-	bool A_or_B , A_mul_B , B_mul_A ;
-	
+	bool A_sum_B, A_mul_B, B_mul_A;
+
 	/*check each calculation condition*/
-	A_or_B  = check_Sum(row_A , col_A, row_B, col_B );
-	A_mul_B = check_AB (col_A , row_B );
-	B_mul_A = check_BA (row_A , col_B);
-	
-		
-	/*Print the result*/
+	A_sum_B = checkSum(row_A, col_A, row_B, col_B);
+	A_mul_B = checkAmultiB(col_A, row_B);
+	B_mul_A = checkBmultiA(row_A, col_B);
+
+	int *p_arr_Sum = NULL; // Sum of matrices
+	int row_Sum = 0;
+	int col_Sum = 0;
+
+	int *p_arr_Mul = NULL; // Multiply of matrices
+	int row_Mul = 0;
+	int col_Mul = 0;
+
+	/*printf the result of conditions*/
+
+	if (A_sum_B == 1) // the condition of matrices's Sum
+	{
+		printf("\nMatrix A and Matrix B can add together \n");
+	}
+	else
+	{
+		printf("\nMatrix A and Matrix B can not add together \n");
+	}
+
+	if (A_mul_B == 1)
+	{
+		printf("Matrix A and Matrix B can multi together \n");
+	}
+	else
+	{
+		printf("Matrix A and matriX B can not multi together \n");
+	}
+
+	if (B_mul_A == 1)
+	{
+		printf("Matrix B and Matrix A can multi together \n");
+	}
+	else
+	{
+		printf("Matrix B and Matrix A can not multi together \n ");
+	}
+
+	/*Print the matrix A and matrix B*/
 	printf("\n----- Matrix A : -----\n");
-	Matrix_Print(arr_A , row_A , col_A );
-	
+	matrixPrint(p_arr_A, row_A, col_A);
+
 	printf("\n----- Matrix B -----\n");
-	Matrix_Print(arr_B , row_B , col_B );
-	
+	matrixPrint(p_arr_B, row_B, col_B);
+
 	printf("\nMatrix A + Matrix B:\n");
-	if ( A_or_B == 1 )
-		Sum ( arr_A, arr_B, row_A, col_B);
+
+	/*print the result*/
+	if (A_sum_B == 1)
+	{
+		p_arr_Sum = (int *)malloc(row_A * col_A * sizeof(int));
+		Sum(p_arr_A, p_arr_B, row_A, col_B, p_arr_Sum);
+		matrixPrint(p_arr_Sum, row_A, col_A);
+		free(p_arr_Sum);
+	}
 	else
+	{
 		printf("N/A\n");
-		
+	}
+
 	printf("\nMatrix A * Matrix B:\n");
-	if ( A_mul_B == 1 )
-		Mul (arr_A , arr_B, row_A , col_B , col_A );
+	if (A_mul_B == 1)
+	{
+		p_arr_Mul = (int *)malloc(row_A * col_B * sizeof(int));
+		Multiply(p_arr_A, p_arr_B, row_A, col_B, col_A, p_arr_Mul);
+		matrixPrint(p_arr_Mul, row_A, col_B);
+		free(p_arr_Mul);
+	}
 	else
+	{
 		printf("N/A\n");
-	
+	}
+
 	printf("\nMatrix B * Matrix A:\n");
-	if ( B_mul_A == 1 )
-		Mul (arr_B , arr_A, row_B , col_A , col_B );
+	if (B_mul_A == 1)
+	{
+
+		p_arr_Mul = (int *)malloc(row_B * col_A * sizeof(int));
+		Multiply(p_arr_B, p_arr_A, row_B, col_A, col_B, p_arr_Mul);
+		matrixPrint(p_arr_Mul, row_B, col_A);
+		free(p_arr_Mul);
+	}
 	else
+	{
 		printf("N/A\n");
+	}
 }

@@ -20,12 +20,12 @@
 *
 *return None
 */
-void Matrix_Input (int *a, int row , int col);
+void matrixInput (int *p_Arr, int row , int col);
 
 /*!
 * @brief <Print an ouput of the element of matrix>
 *
-* @param *a[In/Out] <pointer  point to an array containing matrix's elements>
+* @param *p_A[In/Out] <pointer  point to an array containing matrix's elements>
 *
 * @param row [In] <number of rows of the matrix>
 *
@@ -33,14 +33,14 @@ void Matrix_Input (int *a, int row , int col);
 *
 *return None
 */
-void Matrix_Print ( int *a, int row , int col);
+void matrixPrint ( int *p_Arr, int row , int col);
 
 /*!
 * @brief <Calculate the sumation/addition of two matrices>
 *
-* @param *a[In/Out] <pointer point to an array containing elements of Matrix A>
+* @param *p_A[In/Out] <pointer point to an array containing elements of Matrix A>
 *
-* @param *b[In/Our] <pointer point to an array containing elements of Matrix B>
+* @param *p_B[In/Our] <pointer point to an array containing elements of Matrix B>
 
 * @param row [In] <number of rows of the matrix>
 *
@@ -48,14 +48,14 @@ void Matrix_Print ( int *a, int row , int col);
 *
 *return None
 */
-void Sum (int *a, int *b, int row, int col);
+void Sum(int *p_A, int *p_B, int row, int col, int *p_arr_Sum);
 
 /*!
 * @brief <Calculate the Multiple of two matrices>
 *
-* @param *a[In/Out] <pointer point to an array containing elements of Matrix A>
+* @param *p_A[In/Out] <pointer point to an array containing elements of Matrix A>
 *
-* @param *b[In/Our] <pointer point to an array containing elements of Matrix B>
+* @param *p_B[In/Our] <pointer point to an array containing elements of Matrix B>
 *
 * @param row [In] <number of rows of the matrix>
 *
@@ -65,7 +65,7 @@ void Sum (int *a, int *b, int row, int col);
 *
 *return None
 */
-void Mul (int *a, int *b, int row , int col , int general);
+void Multiply(int *p_A, int *p_B, int row, int col, int general, int *p_arr_Mul);
 
 /*!
 * @brief <check the addition condition of two matrices>
@@ -80,7 +80,7 @@ void Mul (int *a, int *b, int row , int col , int general);
 *
 *return true/false
 */
-bool check_Sum( int row_A, int col_A, int row_B, int col_B );
+bool checkSum( int row_A, int col_A, int row_B, int col_B );
 
 /*!
 * @brief <Check the multiplication condition of Matrix A and B>
@@ -91,7 +91,7 @@ bool check_Sum( int row_A, int col_A, int row_B, int col_B );
 *
 *return true/false
 */
-bool check_AB (int col_A, int row_B );
+bool checkAmultiB (int col_A, int row_B );
 
 /*!
 * @brief <Check the multiplication condition of Matrix B and A>
@@ -102,12 +102,12 @@ bool check_AB (int col_A, int row_B );
 *
 *return true/false
 */
-bool check_BA (int row_A, int col_B);
+bool checkBmultiA (int row_A, int col_B);
 
 /*!
 * @brief <Calculate the sumation/addition of two matrices>
 *
-* @param *arr_A[In/Out] <pointer point to an array containing elements of Matrix A>
+* @param *p_arr_A[In/Out] <pointer point to an array containing elements of Matrix A>
 *
 * @param *arr_B[In/Out] <pointer point to an array containing elements of Matrix B>
 
@@ -120,7 +120,7 @@ bool check_BA (int row_A, int col_B);
 * @param col_B [In] <number of columns of the matrix B>
 *return None
 */
-void show_Output(int *arr_A , int *arr_B, int row_A, int col_A, int row_B, int col_B);
+void Output(int *p_arr_A , int *p_arr_B, int row_A, int col_A, int row_B, int col_B);
 
 
 #endif
