@@ -9,73 +9,73 @@
 /*!
 * @brief <Create an input the element of array>
 *
-* @param  a[In] <the parameter of the array>
+* @param  arr[In] <the parameter of the array>
 *
-* @param  n[In] <the numbers of elemnt of array>
+* @param  num[In] <the numbers of elemnt of array>
 *
 *return None
 */
-void Input(int a[], int n);
+void Input(int arr[], int num);
 
 
 /*!
 * @brief <Print the Output of the element of array>
 *
-* @param  a[Out] <the parameter of the array>
+* @param  arr[Out] <the parameter of the array>
 *
-* @param n[In] <the numbers of elemnt of array>
+* @param num[In] <the numbers of elemnt of array>
 *
 *return None
 */
-void Output_Array(int a[], int n);
+void outputArray(int arr[], int num);
 
 
 /*!
 * @brief <calculate the average all element of array>
 *
-* @param  a[In] <the parameter of the array>
+* @param  arr[In] <the parameter of the array>
 *
-* @param n[In] <the numbers of elemnt of array>
+* @param num[In] <the numbers of elemnt of array>
 *
 * return <average variable>
 */
-float Cal_Average(int a[], int n);
+float calAverage(int arr[], int num);
 
 
 /*!
 * @brief <count the number of elemrnt lower than the average of array>
 *
-* @param  a[In] <the parameter of the array>
+* @param  arr[In] <the parameter of the array>
 *
-* @param n[In] <the numbers of elemnt of array>
+* @param num[In] <the numbers of elemnt of array>
 *
 *<the numbers of element less than average>
 */
-int Less_Aveg(int a[], int n);
+int lessAveg(int arr[], int num);
 
 /*!
 * @brief <find the value and position of number in array>
 *
-* @param  a[In] <the parameter of the array>
+* @param  arr[In] <the parameter of the array>
 *
-* @param n[In] <the numbers of elemnt of array>
+* @param num[In] <the numbers of elemnt of array>
 *
-* @param num <the number want to find in array>
+* @param num_search <the number want to find in array>
 *
 *return None
 */
-void Search(int a[], int n, int num);
+void Search(int arr[], int num, int num_search);
 
 /*!
 * @brief <move all odd element to the left of array>
 *
-* @param  a[In] <the parameter of the array>
+* @param  arr[In] <the parameter of the array>
 *
-* @param n[In] <the numbers of elemnt of array>
+* @param num[In] <the numbers of elemnt of array>
 *
 *return None
 */
-void odd_Element(int a[], int n);
+void oddElement(int arr[], int num);
 
 #endif
 /*** end of file ***/

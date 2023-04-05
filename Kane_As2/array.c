@@ -5,65 +5,62 @@
 *  Funtion Name : Input
 *  Description  : Input the element of array
 ==========================================================================*/
-void Input(int a[], int n)
+void Input(int arr[], int num)
 {
-	int i;
-	for (i = 0; i < n; i++)
+	int index;
+	for (index = 0; index < num; index++)
 	{
-		printf("Input a[%d] = ", i);
-		scanf("%d", &a[i]);
+		printf("Input a[%d] = ", index);
+		scanf("%d", &arr[index]);
 	}
 }
 
 /*printf Array*/
 /*FUNCTION=================================================================
-*  Funtion Name : Output_Array
+*  Funtion Name : outputArray
 *  Description  : Print the array
 ==========================================================================*/
-void Output_Array(int a[], int n)
+void outputArray(int arr[], int num)
 {
-	int i;
+	int index;
 
-	for (i = 0; i < n; ++i)
+	for (index = 0; index < num; index++)
 	{
-		printf("%d  ", a[i]);
+		printf("%d  ", arr[index]);
 	}
 }
 
 /* Calculator the average of Array */
 /*FUNCTION=================================================================
-*  Funtion Name : Cal_Average
+*  Funtion Name : calAverage
 *  Description  : Calculator the average of array
 ==========================================================================*/
-float Cal_Average(int a[], int n)
+float calAverage(int arr[], int num)
 {
-	int count;
-	int sum = 0;
-	float avrg;
-	float avr = 0; /* Calculator the average of Array */
-
-	int i;
-	for (count = 0; count < n; count++)
+	int sum = 0    ;  // the sum of array
+	float avrg = 0 ;  // the average of array
+	int index = 0  ;  // Loop variable
+	for (index = 0; index < num; index++)
 	{
-		sum += a[count];
+		sum += arr[index];
 	}
-	avrg = sum / count;
+	avrg = sum / num;
 	return avrg;
 }
 
 /* find the the numbers of element less than average */
 /*FUNCTION=================================================================
-*  Funtion Name : Less_Aveg
+*  Funtion Name : lessAveg
 *  Description  : count the number of elemrnt lower than
 *                 the average of array
 ==========================================================================*/
-int Less_Aveg(int a[], int n)
+int lessAveg(int arr[], int num)
 {
-	int i;
-	int count = 0;
-	for (i = 0; i < n; i++)
+	int index = 0;
+	int count = 0; // count the numbers are less than average
+	for (index = 0; index < num; index++)
 	{
-		if (a[i] < Cal_Average(a,n) )
+		if (arr[index] < calAverage(arr,num) )
 		{
 			count++;
 		}
@@ -77,15 +74,15 @@ int Less_Aveg(int a[], int n)
 *  Funtion Name : Search
 *  Description  : find the value and position of number in array
 ==========================================================================*/
-void Search(int a[], int n, int num)
+void Search(int arr[], int num, int num_search)
 {
-	int i;
-	int count = 0;
-	for (i = 0; i < n; i++)
+	int index = 0; //loop variable
+	int count = 0; // count the number of numbers want find
+	for (index = 0; index < num; index++)
 	{
-		if (a[i] == num)
+		if (arr[index] == num_search)
 		{
-			printf("a[%d] = %d  \n", i, a[i]);
+			printf("arr[%d] = %d  \n", index, arr[index]);
 			count++;
 		}
 	} /* Calculator the average of Array */
@@ -98,22 +95,23 @@ void Search(int a[], int n, int num)
 *  Funtion Name : odd_Element
 *  Description  : move all odd element to the left of array
 ==========================================================================*/
-void odd_Element(int a[], int n)
+void oddElement(int arr[], int num)
 {
-	int i, j;
-	int temp;
-	for (i = 1; i < n; i++)
+	int index = 0; // loop variable in compare
+	int inser = 0; // loop variable to insertion
+	int temp = 0; //temporary variable
+	for (index = 1; index < num; index++)
 	{
-		temp = a[i];
-		j = i - 1;
+		temp = arr[index];
+		inser = index - 1;
 
-		while ((j >= 0) && (a[j] % 2 == 0) && (temp % 2 != 0))
+		while ((inser >= 0) && (arr[inser] % 2 == 0) && (temp % 2 != 0))
 		{
-			a[j + 1] = a[j];
-			j = j - 1;
+			arr[inser + 1] = arr[inser];
+			inser = inser - 1;
 		}
-		a[j + 1] = temp;
+		arr[inser + 1] = temp;
 	}
 
-	Output_Array(a, n);
+	outputArray(arr, num);
 }

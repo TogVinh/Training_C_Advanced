@@ -3,47 +3,47 @@
 int main()
 {
 
-	int N;		// Elements of Array
-	float avrg; // Average of Array
-	float L;	// The number of all elements less than avrg
-	int P;		// The number want to find array
+	int Num;		 // Elements of Array
+	float avrg;		 // Average of Array
+	float less_avrg; // The number of all elements less than avrg
+	int search_num;	 // The number want to find array
 
 	printf("Input the element of Array : ");
-	scanf("%d", &N);
+	scanf("%d", &Num);
 
-	int arr[N];
+	int arr[Num];
 	printf("\n Starting input Array\n");
 
-	Input(arr, N);
+	Input(arr, Num);
 
 	printf("Array : \n");
 	printf("\t");
-	Output_Array(arr, N);
+	outputArray(arr, Num);
 	printf("\n--------------------------");
 
 	/*Average of all element in array*/
-	avrg = Cal_Average(arr, N);
+	avrg = calAverage(arr, Num);
 	printf("\nThe Average of Array is : %.2f", avrg);
 
 	/*the numbers of element less than average*/
-	L = Less_Aveg(arr, N);
-	printf("\nThe numbers of all element less than average  : %.2f\n", L);
+	less_avrg = lessAveg(arr, Num);
+	printf("\nThe numbers of all element less than average  : %.2f\n", less_avrg);
 
 	/*find value in Array*/
 	printf("\nInput the value of element to find : ");
-	scanf("%d", &P);
+	scanf("%d", &search_num);
 
-	Search(arr, N, P);
+	Search(arr, Num, search_num);
 
 	/*Array before calling function to odd value to the left */
 	printf("\nmove all the even value to the left of array");
 	printf("\nArray Befor : ");
-	Output_Array(arr, N);
+	outputArray(arr, Num);
 
 	/*Array after calling function to odd value to the left */
 	printf("\nArray after : ");
-	odd_Element(arr, N);
+	oddElement(arr, Num);
 	printf("\n");
-	
+
 	return 0;
 }
