@@ -1,39 +1,27 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <ctype.h>
+#include "listEmployee.h"
 
-#define MAX  50
-
-typedef struct Infomation_t
-{
-	int ID;
-	char Full_Name[50];
-	char Department[50];
-	int Salary;
-	int day;
-	int month;
-	int year;
-}Info_t;
-
-struct list_Emp_t
-{
-    Info_t Emp_t;
-    struct list_Emp_t *p_next;
-};
-typedef struct list_Emp_t node;
-
-void init (node  **pp_head)
+/*FUNCTION=================================================================
+*  Funtion Name : initNode
+*  Description  : init a head point in Linked List
+==========================================================================*/
+void initNode (node  **pp_head)
 {
     *pp_head = NULL;
 }
 
+/*FUNCTION=================================================================
+*  Funtion Name : isNull
+*  Description  : check the head pointer is point to Null or not
+==========================================================================*/
 bool isNull (node **pp_head)
 {
     return pp_head == NULL;
 }
 
+/*FUNCTION=================================================================
+*  Funtion Name : createNode
+*  Description  : create a new Node and attribute of Node
+==========================================================================*/
 node *createNode()
 {
     node *pEmp = (node*)malloc(sizeof(node));
@@ -63,7 +51,11 @@ node *createNode()
     return pEmp;
 }
 
-void Insert ( node **pp_head, node *p_new )
+/*FUNCTION=================================================================
+*  Funtion Name : Insert
+*  Description  : insert a node to Linked List
+==========================================================================*/
+void insert ( node **pp_head, node *p_new )
 {
     if (*pp_head == NULL)
     {
@@ -75,9 +67,11 @@ void Insert ( node **pp_head, node *p_new )
     *pp_head = p_new;
 }
 
-
-// nhap danh sach nhan vien
-void Input(node **pp_head)
+/*FUNCTION=================================================================
+*  Funtion Name : input
+*  Description  : input the information of node
+==========================================================================*/
+void input(node **pp_head)
 {
     int num = 0;
     int element = 0; //loop varibale -- the element of Linked List
@@ -97,13 +91,17 @@ void Input(node **pp_head)
     for ( element = 0 ; element < num ; element++ )
     {
         node *p_new = createNode();
-        Insert(pp_head, p_new);
+        insert(pp_head, p_new);
         //free(p_new);
     }
 
 }
 
-void Output (node *p_head)
+/*FUNCTION=================================================================
+*  Funtion Name : output
+*  Description  : print the information of Link List
+==========================================================================*/
+void output (node *p_head)
 {
     while (p_head != NULL)
     {
@@ -120,7 +118,10 @@ void Output (node *p_head)
     
 }
 
-// ascending salary
+/*FUNCTION=================================================================
+*  Funtion Name : ascending
+*  Description  : arrange salary in ascending order
+==========================================================================*/
 void ascending(node **pp_head)
 {
     node *p_current = NULL;
@@ -154,7 +155,10 @@ void ascending(node **pp_head)
     }
 }
 
-// descending salary
+/*FUNCTION=================================================================
+*  Funtion Name : ascending
+*  Description  : arrange salary in descending order
+==========================================================================*/
 void descending (node **pp_head)
 {
     node *p_current = NULL;
@@ -188,7 +192,10 @@ void descending (node **pp_head)
     }
 }
 
-
+/*FUNCTION=================================================================
+*  Funtion Name : ascending
+*  Description  : arrange by Name
+==========================================================================*/
 void softName(node **pp_head)
 {
     node *p_current = NULL;
@@ -224,24 +231,29 @@ void softName(node **pp_head)
     }
 }
 
-// mode of soft
-void softMode(int *p_choice, node **p_head)
+/*FUNCTION=================================================================
+*  Funtion Name : softMode
+*  Description  : mode to soft the Linked List
+==========================================================================*/
+void softMode(node **p_head)
 {
-    while ( *p_choice == 0 || *p_choice == 1 || *p_choice == 2)
+    int choice;
+    do
     {
-        switch (*p_choice)
+        scanf("%d",&choice);
+        switch (choice)
         {
             case 0: 
-                // sap xep theo ten
+                // soft by name
                 softName(p_head);
                 break;
         
             case 1:
-                // sap xe tang theo luong
+                // soft by salary ascending
                 ascending(p_head);
                 break;
             case 2:
-                // sap xep giam theo luong
+                // soft by salary descending
                 descending (p_head);
                 break;
 
@@ -250,30 +262,5 @@ void softMode(int *p_choice, node **p_head)
                 break;
         }
     }
-    
-}
-
-int main()
-{
-    int choice;
-    node *p_head;
-    init(&p_head);
-    Input(&p_head);
-    
-    printf("\n--------------------------\n");
-    printf("1 -- arrange ascending salary \n");
-    printf("2 -- arrange descanding salary \n");
-    printf("3 -- soft by Name \n");
-
-    printf("\n Your choice :  ");
-    scanf("%d" , &choice);
-    
-    softMode(&choice, &p_head) ;
-
-    printf("\n----the List of employee----");
-
-    Output(p_head);
-    
-    free(p_head);
-    return 0;
+    while ( (choice != 0) && (choice !=1) && (choice != 2) );
 }
