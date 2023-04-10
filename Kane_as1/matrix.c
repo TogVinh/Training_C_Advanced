@@ -4,7 +4,7 @@
 *  Funtion Name : Matrix_Input
 *  Description  : Input the element of matrix
 ==========================================================================*/
-void matrixInput(int *p_Arr, int row, int col)
+void matrixInput(int *p_arr, int row, int col)
 {
 	int row_index, col_index; // loop variable
 
@@ -13,7 +13,7 @@ void matrixInput(int *p_Arr, int row, int col)
 		for (col_index = 0; col_index < col; col_index++)
 		{
 			printf("a[%d][%d] =  ", row_index, col_index);
-			scanf("%d", (p_Arr + row_index * row + col_index));
+			scanf("%d", (p_arr + row_index * row + col_index));
 		}
 	}
 }
@@ -22,7 +22,7 @@ void matrixInput(int *p_Arr, int row, int col)
 *  Funtion Name : Matrix_Print
 *  Description  : Print the matrix to the terminal
 ==========================================================================*/
-void matrixPrint(int *p_Arr, int row, int col)
+void matrixPrint(int *p_arr, int row, int col)
 {
 	int row_index, col_index; // Loop variable
 
@@ -30,7 +30,7 @@ void matrixPrint(int *p_Arr, int row, int col)
 	{
 		for (col_index = 0; col_index < col; col_index++)
 		{
-			printf("%d   ", *(p_Arr + row_index * row + col_index));
+			printf("%d   ", *(p_arr + row_index * row + col_index));
 		}
 		printf("\n");
 	}
@@ -40,7 +40,7 @@ void matrixPrint(int *p_Arr, int row, int col)
 *  Funtion Name : Sum
 *  Description  : Calculate the sumation/addition of two matrices
 ==========================================================================*/
-void Sum(int *p_A, int *p_B, int row, int col, int *p_arr_Sum)
+void Sum(int *p_arrA, int *p_arrB, int row, int col, int *p_arrsum)
 {
 
 	/*loop variable */
@@ -50,16 +50,17 @@ void Sum(int *p_A, int *p_B, int row, int col, int *p_arr_Sum)
 	{
 		for (col_index = 0; col_index < col; col_index++)
 		{
-			*(p_arr_Sum + row_index * row + col_index) = *(p_A + row_index * row + col_index) + *(p_B + row_index * row + col_index);
+			*(p_arrsum + row_index * row + col_index) = 
+			*(p_arrA + row_index * row + col_index) + *(p_arrB + row_index * row + col_index);
 		}
 	}
 }
 
 /*FUNCTION================================================================
-*  Funtion Name : mul
+*  Funtion Name : Multiply
 *  Description  : Calculate the Multiple of two matrices
 =========================================================================*/
-void Multiply(int *p_A, int *p_B, int row, int col, int general, int *p_arr_Mul)
+void Multiply(int *p_arrA, int *p_arrB, int row, int col, int general, int *p_arrmul)
 {
 
 	int row_index = 0; // loop variable to count row of matrix
@@ -75,11 +76,11 @@ void Multiply(int *p_A, int *p_B, int row, int col, int general, int *p_arr_Mul)
 
 			for (index = 0; index < general; index++)
 			{
-				matrix_element += *(p_A + row_index * row + index) * *(p_B + index * row + col_index);
+				matrix_element += *(p_arrA + row_index * row + index) * *(p_arrB + index * row + col_index);
 			}
 
 			// element in row i col j of arr_M
-			*(p_arr_Mul + row_index * row + col_index) = matrix_element;
+			*(p_arrmul + row_index * row + col_index) = matrix_element;
 		}
 	}
 }
@@ -89,9 +90,9 @@ void Multiply(int *p_A, int *p_B, int row, int col, int general, int *p_arr_Mul)
 *  Description  : check the addition condition of two matrices
 *  return true/false
 ========================================================================*/
-bool checkSum(int row_A, int col_A, int row_B, int col_B)
+bool checkSum(int rowA, int colA, int rowB, int colB)
 {
-	if ((row_A == row_B) && (col_A == col_B))
+	if ((rowA == rowB) && (colA == colB))
 	{
 		return 1;
 	}
@@ -106,9 +107,9 @@ bool checkSum(int row_A, int col_A, int row_B, int col_B)
 *  Description  : check the multiplication condition of Matrix A and B
 *  return true/false
 ========================================================================*/
-bool checkAmultiB(int col_A, int row_B)
+bool checkAmultiB(int colA, int rowB)
 {
-	if (col_A == row_B)
+	if (colA == rowB)
 	{
 		return 1;
 	}
@@ -124,9 +125,9 @@ bool checkAmultiB(int col_A, int row_B)
 *  Description  : check the multiplication condition of Matrix B and A
 *  return true/false
 ========================================================================*/
-bool checkBmultiA(int row_A, int col_B)
+bool checkBmultiA(int rowA, int colB)
 {
-	if (row_A == col_B)
+	if (rowA == colB)
 	{
 		return 1;
 	}
@@ -140,26 +141,22 @@ bool checkBmultiA(int row_A, int col_B)
 *  Funtion Name : show_Output
 *  Description  : check and show output of program
 ========================================================================*/
-void Output(int *p_arr_A, int *p_arr_B, int row_A, int col_A, int row_B, int col_B)
+void Output(int *p_arrA, int *p_arrB, int rowA, int colA, int rowB, int colB)
 {
-	bool A_sum_B, A_mul_B, B_mul_A;
+	bool sum_AB, mul_AB, mul_BA;
 
 	/*check each calculation condition*/
-	A_sum_B = checkSum(row_A, col_A, row_B, col_B);
-	A_mul_B = checkAmultiB(col_A, row_B);
-	B_mul_A = checkBmultiA(row_A, col_B);
+	sum_AB = checkSum(rowA, colA, rowB, colB);
+	mul_AB = checkAmultiB(colA, rowB);
+	mul_BA = checkBmultiA(rowA, colB);
 
-	int *p_arr_Sum = NULL; // Sum of matrices
-	int row_Sum = 0;
-	int col_Sum = 0;
+	int *p_arrsum = NULL; // Sum of matrices
 
-	int *p_arr_Mul = NULL; // Multiply of matrices
-	int row_Mul = 0;
-	int col_Mul = 0;
+	int *p_arrmul = NULL; // Multiply of matrices
 
 	/*printf the result of conditions*/
 
-	if (A_sum_B == 1) // the condition of matrices's Sum
+	if (sum_AB == 1) // the condition of matrices's Sum
 	{
 		printf("\nMatrix A and Matrix B can add together \n");
 	}
@@ -168,7 +165,7 @@ void Output(int *p_arr_A, int *p_arr_B, int row_A, int col_A, int row_B, int col
 		printf("\nMatrix A and Matrix B can not add together \n");
 	}
 
-	if (A_mul_B == 1)
+	if (mul_AB == 1)
 	{
 		printf("Matrix A and Matrix B can multi together \n");
 	}
@@ -177,7 +174,7 @@ void Output(int *p_arr_A, int *p_arr_B, int row_A, int col_A, int row_B, int col
 		printf("Matrix A and matriX B can not multi together \n");
 	}
 
-	if (B_mul_A == 1)
+	if (mul_BA == 1)
 	{
 		printf("Matrix B and Matrix A can multi together \n");
 	}
@@ -188,20 +185,20 @@ void Output(int *p_arr_A, int *p_arr_B, int row_A, int col_A, int row_B, int col
 
 	/*Print the matrix A and matrix B*/
 	printf("\n----- Matrix A : -----\n");
-	matrixPrint(p_arr_A, row_A, col_A);
+	matrixPrint(p_arrA, rowA, colA);
 
 	printf("\n----- Matrix B -----\n");
-	matrixPrint(p_arr_B, row_B, col_B);
+	matrixPrint(p_arrB, rowB, colB);
 
 	printf("\nMatrix A + Matrix B:\n");
 
 	/*print the result*/
-	if (A_sum_B == 1)
+	if (sum_AB == 1)
 	{
-		p_arr_Sum = (int *)malloc(row_A * col_A * sizeof(int));
-		Sum(p_arr_A, p_arr_B, row_A, col_B, p_arr_Sum);
-		matrixPrint(p_arr_Sum, row_A, col_A);
-		free(p_arr_Sum);
+		p_arrsum = (int *)malloc(rowA * colA * sizeof(int));
+		Sum(p_arrA, p_arrB, rowA, colB, p_arrsum);
+		matrixPrint(p_arrsum, rowA, colA);
+		free(p_arrsum);
 	}
 	else
 	{
@@ -209,12 +206,12 @@ void Output(int *p_arr_A, int *p_arr_B, int row_A, int col_A, int row_B, int col
 	}
 
 	printf("\nMatrix A * Matrix B:\n");
-	if (A_mul_B == 1)
+	if (mul_AB == 1)
 	{
-		p_arr_Mul = (int *)malloc(row_A * col_B * sizeof(int));
-		Multiply(p_arr_A, p_arr_B, row_A, col_B, col_A, p_arr_Mul);
-		matrixPrint(p_arr_Mul, row_A, col_B);
-		free(p_arr_Mul);
+		p_arrmul = (int *)malloc(rowA * colB * sizeof(int));
+		Multiply(p_arrA, p_arrB, rowA, colB, colA, p_arrmul);
+		matrixPrint(p_arrmul, rowA, colB);
+		free(p_arrmul);
 	}
 	else
 	{
@@ -222,13 +219,13 @@ void Output(int *p_arr_A, int *p_arr_B, int row_A, int col_A, int row_B, int col
 	}
 
 	printf("\nMatrix B * Matrix A:\n");
-	if (B_mul_A == 1)
+	if (mul_BA == 1)
 	{
 
-		p_arr_Mul = (int *)malloc(row_B * col_A * sizeof(int));
-		Multiply(p_arr_B, p_arr_A, row_B, col_A, col_B, p_arr_Mul);
-		matrixPrint(p_arr_Mul, row_B, col_A);
-		free(p_arr_Mul);
+		p_arrmul = (int *)malloc(rowB * colA * sizeof(int));
+		Multiply(p_arrB, p_arrA, rowB, colA, colB, p_arrmul);
+		matrixPrint(p_arrmul, rowB, colA);
+		free(p_arrmul);
 	}
 	else
 	{

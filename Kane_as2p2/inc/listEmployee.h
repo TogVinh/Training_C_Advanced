@@ -17,21 +17,21 @@
 typedef struct Infomation_t
 {
 	int ID;
-	char Full_Name[50];
-	char Department[50];
+	char Full_Name[MAX];
+	char Department[MAX];
 	int Salary;
 	int day;
 	int month;
 	int year;
-}Info_t;
+}info_t;
 
-struct list_Emp_t
+struct list_emp_t
 {
-    Info_t Emp_t;
-    struct list_Emp_t *p_next;
+    info_t emp_t;
+    struct list_emp_t *p_next;
 };
 
-typedef struct list_Emp_t node;
+typedef struct list_emp_t node;
 
 
 

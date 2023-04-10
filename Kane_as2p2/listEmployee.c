@@ -24,35 +24,35 @@ bool isNull (node **pp_head)
 ==========================================================================*/
 node *createNode()
 {
-    node *pEmp = (node*)malloc(sizeof(node));
+    node *p_emp = (node*)calloc(7,sizeof(node));
     printf("\nInput Employee's Name  : ");
-    fgets(pEmp->Emp_t.Full_Name, 50, stdin);
-    fgets(pEmp->Emp_t.Full_Name, 50, stdin);
+    fgets(p_emp->emp_t.Full_Name, MAX, stdin);
+    fgets(p_emp->emp_t.Full_Name, MAX, stdin);
 
     printf("Input ID of Employee     : ");
-    scanf("%d",&pEmp->Emp_t.ID);
+    scanf("%d",&p_emp->emp_t.ID);
 
     printf("Input Department         : ");
-    fgets(pEmp->Emp_t.Department,50, stdin);
-    fgets(pEmp->Emp_t.Department,50, stdin);
+    fgets(p_emp->emp_t.Department,MAX, stdin);
+    fgets(p_emp->emp_t.Department,MAX, stdin);
 
     printf("Input Salary             : ");
-    scanf("%d",&pEmp->Emp_t.Salary);
+    scanf("%d",&p_emp->emp_t.Salary);
 
     printf("Input join day           : ");
-    scanf("%d",&pEmp->Emp_t.day);
+    scanf("%d",&p_emp->emp_t.day);
 
     printf("Input join month         : ");
-    scanf("%d",&pEmp->Emp_t.month);
+    scanf("%d",&p_emp->emp_t.month);
 
     printf("Input join year          : ");
-    scanf("%d",&pEmp->Emp_t.year);
+    scanf("%d",&p_emp->emp_t.year);
 
-    return pEmp;
+    return p_emp;
 }
 
 /*FUNCTION=================================================================
-*  Funtion Name : Insert
+*  Funtion Name : insert
 *  Description  : insert a node to Linked List
 ==========================================================================*/
 void insert ( node **pp_head, node *p_new )
@@ -92,7 +92,6 @@ void input(node **pp_head)
     {
         node *p_new = createNode();
         insert(pp_head, p_new);
-        //free(p_new);
     }
 
 }
@@ -105,13 +104,13 @@ void output (node *p_head)
 {
     while (p_head != NULL)
     {
-        printf("\nID            : %d",p_head->Emp_t.ID);
+        printf("\nID            : %d",p_head->emp_t.ID);
         printf("\nName          : ");
-        puts(p_head->Emp_t.Full_Name);
+        puts(p_head->emp_t.Full_Name);
         printf("Department      : ");
-        puts(p_head->Emp_t.Department);
-        printf("Salary        : %d",p_head->Emp_t.Salary);
-        printf("\nStart         : %d/%d/%d", p_head->Emp_t.day, p_head->Emp_t.month, p_head->Emp_t.year);
+        puts(p_head->emp_t.Department);
+        printf("Salary        : %d",p_head->emp_t.Salary);
+        printf("\nStart         : %d/%d/%d", p_head->emp_t.day, p_head->emp_t.month, p_head->emp_t.year);
         printf("\n");
         p_head = p_head->p_next;
     }
@@ -140,11 +139,11 @@ void ascending(node **pp_head)
             p_index = p_current->p_next;
             while(p_index != NULL)
             {
-                if(p_current->Emp_t.Salary > p_index->Emp_t.Salary)
+                if(p_current->emp_t.Salary > p_index->emp_t.Salary)
                 {
-                    temp = p_current->Emp_t.Salary;
-                    p_current->Emp_t.Salary = p_index->Emp_t.Salary;
-                    p_index->Emp_t.Salary = temp;
+                    temp = p_current->emp_t.Salary;
+                    p_current->emp_t.Salary = p_index->emp_t.Salary;
+                    p_index->emp_t.Salary = temp;
                 }
 
                 p_index = p_index->p_next;
@@ -177,11 +176,11 @@ void descending (node **pp_head)
             p_index = p_current->p_next;
             while(p_index != NULL)
             {
-                if(p_current->Emp_t.Salary < p_index->Emp_t.Salary)
+                if(p_current->emp_t.Salary < p_index->emp_t.Salary)
                 {
-                    temp = p_current->Emp_t.Salary;
-                    p_current->Emp_t.Salary = p_index->Emp_t.Salary;
-                    p_index->Emp_t.Salary = temp;
+                    temp = p_current->emp_t.Salary;
+                    p_current->emp_t.Salary = p_index->emp_t.Salary;
+                    p_index->emp_t.Salary = temp;
                 }
 
                 p_index = p_index->p_next;
@@ -217,12 +216,12 @@ void softName(node **pp_head)
             while(p_index != NULL)
             {
                 int compare = 0;
-                compare = strcmp( p_current->Emp_t.Full_Name , p_index->Emp_t.Full_Name );
+                compare = strcmp( p_current->emp_t.Full_Name , p_index->emp_t.Full_Name );
                 if ( compare == 1 )
                 {
-                    strcpy ( temp , p_current->Emp_t.Full_Name );
-                    strcpy ( p_current->Emp_t.Full_Name , p_index->Emp_t.Full_Name );
-                    strcpy ( p_index->Emp_t.Full_Name , temp );
+                    strcpy ( temp , p_current->emp_t.Full_Name );
+                    strcpy ( p_current->emp_t.Full_Name , p_index->emp_t.Full_Name );
+                    strcpy ( p_index->emp_t.Full_Name , temp );
                 }
             } 
 

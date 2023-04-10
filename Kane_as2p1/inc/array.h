@@ -64,7 +64,7 @@ int lessAveg(int arr[], int num);
 *
 *return None
 */
-void Search(int arr[], int num, int num_search);
+void searchIndex(int arr[], int num, int num_search);
 
 /*!
 * @brief <move all odd element to the left of array>

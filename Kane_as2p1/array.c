@@ -74,7 +74,7 @@ int lessAveg(int arr[], int num)
 *  Funtion Name : Search
 *  Description  : find the value and position of number in array
 ==========================================================================*/
-void Search(int arr[], int num, int num_search)
+void searchIndex(int arr[], int num, int num_search)
 {
 	int index = 0; //loop variable
 	int count = 0; // count the number of numbers want find

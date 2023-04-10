@@ -1,7 +1,8 @@
 CFLAGS = -I. -I./inc
 
-TARGET = run_As2P2
-OBJECTS = main.o listEmployee.o
+TARGET = run_as1
+OBJECTS = main.o matrix.o
+
 
 $(TARGET): $(OBJECTS)
 	gcc -o $(TARGET) $(OBJECTS)
@@ -9,8 +10,9 @@ $(TARGET): $(OBJECTS)
 main.o: main.c 
 	gcc -c main.c -I./inc
 
-listEmployee.o: listEmployee.c
-	gcc -c listEmployee.c -I./inc
+matrix.o: matrix.c
+	gcc -c matrix.c -I./inc
 	 
 clean:
 	rm -r *.o
+
