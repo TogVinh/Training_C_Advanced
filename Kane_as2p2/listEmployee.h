@@ -127,7 +127,7 @@ void softName(node **pp_head);
 *
 *return None
 */
-void softMode(node **p_head);
+//void softMode(node **p_head);
 
 #endif
 /*** end of file ***/

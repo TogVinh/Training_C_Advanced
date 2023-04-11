@@ -24,7 +24,7 @@ bool isNull (node **pp_head)
 ==========================================================================*/
 node *createNode()
 {
-    node *p_emp = (node*)calloc(7,sizeof(node));
+    node *p_emp = (node*)malloc(sizeof(node));
     printf("\nInput Employee's Name  : ");
     fgets(p_emp->emp_t.Full_Name, MAX, stdin);
     fgets(p_emp->emp_t.Full_Name, MAX, stdin);
@@ -105,10 +105,10 @@ void output (node *p_head)
     while (p_head != NULL)
     {
         printf("\nID            : %d",p_head->emp_t.ID);
-        printf("\nName          : ");
-        puts(p_head->emp_t.Full_Name);
-        printf("Department      : ");
-        puts(p_head->emp_t.Department);
+        printf("\nName          : %s",p_head->emp_t.Full_Name);
+        //puts(p_head->emp_t.Full_Name);
+        printf("Department    : %s", p_head->emp_t.Department);
+        //puts(p_head->emp_t.Department);
         printf("Salary        : %d",p_head->emp_t.Salary);
         printf("\nStart         : %d/%d/%d", p_head->emp_t.day, p_head->emp_t.month, p_head->emp_t.year);
         printf("\n");
@@ -126,6 +126,7 @@ void ascending(node **pp_head)
     node *p_current = NULL;
     node *p_index = NULL;
     int temp = 0;
+
     if (*pp_head = NULL)
     {
         printf("Empty List\n");
@@ -152,6 +153,7 @@ void ascending(node **pp_head)
             p_current = p_current->p_next;
         }
     }
+    
 }
 
 /*FUNCTION=================================================================
@@ -188,6 +190,7 @@ void descending (node **pp_head)
 
             p_current = p_current->p_next;
         }
+        output(*pp_head);
     }
 }
 
@@ -227,6 +230,7 @@ void softName(node **pp_head)
 
             p_current = p_current->p_next;
         }
+        
     }
 }
 
@@ -234,32 +238,34 @@ void softName(node **pp_head)
 *  Funtion Name : softMode
 *  Description  : mode to soft the Linked List
 ==========================================================================*/
-void softMode(node **p_head)
-{
-    int choice;
-    do
-    {
-        scanf("%d",&choice);
-        switch (choice)
-        {
-            case 0: 
-                // soft by name
-                softName(p_head);
-                break;
+// void softMode(node **p_head)
+// {
+//     int choice;
+//     do
+//     {
+//         scanf("%d",&choice);
+//         switch (choice)
+//         {
         
-            case 1:
-                // soft by salary ascending
-                ascending(p_head);
-                break;
-            case 2:
-                // soft by salary descending
-                descending (p_head);
-                break;
+//             case 1:
+//                 // soft by salary ascending
+//                 ascending(p_head);
+                
+//                 break;
+//             case 2:
+//                 // soft by salary descending
+//                 descending (p_head);
+//                 break;
 
-            default:
-                printf("wrong input - repeat your choice");
-                break;
-        }
-    }
-    while ( (choice != 0) && (choice !=1) && (choice != 2) );
-}
+//             case 3: 
+//                 // soft by name
+//                 softName(p_head);
+//                 break;
+            
+//             default:
+//                 printf("wrong input - repeat your choice : ");
+//                 break;
+//         }
+//     }
+//     while ( (choice != 3) || (choice !=1) || (choice != 2) );
+// }
