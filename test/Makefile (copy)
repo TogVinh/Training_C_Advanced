@@ -1,0 +1,18 @@
+CFLAGS = -Aa -D_HPUX_SOURCE
+
+OBJECTS = main.o test1.o test2.o
+
+main_run: $(OBJECTS)
+	gcc -o main_run $(OBJECTS)
+
+test1.o: test1.c test.h
+	gcc -c test1.c -I/inc
+
+test2.o: test2.c test.h
+	gcc -c test2.c -I/inc
+	 
+main.o: main.c test.h
+	gcc -c main.c -I/inc 
+
+clean:
+	rm -r main.o test1.o test2.o
